@@ -1,0 +1,147 @@
+<div class="wrap-con" *ngIf="appStore.userState$ | async as user">
+  <div class="top-wrap">
+    <div class="prof col-3">
+      <div class="prof-detail ">
+        <div class="user-avatar">
+          <i *ngIf="user?.photoURL == null" class="fa-solid fa-user"></i>
+          <img *ngIf="user?.photoURL !== null" [alt]="user?.displayName" [src]="user?.photoURL" />
+        </div>
+        <div class="user-detail col-sm-10 ">
+          <div class="inner-UD">
+         
+            <a *ngIf="user?.displayName !== null">{{user?.displayName === "" ? empty : (appStore.userState$ |
+              async)?.displayName}}</a>
+            <div class="grd">
+              <div>
+                <small>{{user?.email}} | Owner</small>
+              </div>
+            </div>
+            <span style="cursor: pointer; font-size: small;" (click)="showupdateProfile()">Update your
+              profile</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 pageTitle">Book Shelf</div>
+    <span (click)="logout()"><i class="col-1 fa-solid fa-right-from-bracket"></i></span>
+  </div>
+
+
+  <div class="layout">
+    <div class="card">
+      <div class="shelf_layout">
+        <div class="category">
+          <!-- <div *ngIf="categoryListEmpty" class="emp">
+            <i class="fa fa-exclamation-circle"></i>
+            <a (click)="onShowNewCategory(null, 0, true)">No Category<br>
+              Add New</a>
+          </div> -->
+          <div *ngIf="categoryListShow">
+            <div class="cat-wrap">
+              <h6>Books</h6>
+              <i (click)="onShowNewCategory(null, 0, true)" class="fa-solid fa-square-plus"></i>
+            </div>
+
+            <div *ngFor="let category of categories; let i = index">
+              <div class="categoryItem" (click)="onSelectedCategory(category)"
+                [ngClass]="{'active': selectedCategory === category}">
+                <a class="title">{{category.title}}</a>
+                <!-- <div class="action">
+                  <i (click)="onShowNewCategory(category, i, false)" class="fa-solid fa-edit"></i>
+                  <i (click)="onDeleteCategory(category.id)" class="fa fa-trash"></i>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <mat-divider class="divider" [vertical]="true"></mat-divider>
+        <!-- <div class="divider"></div> -->
+        <div *ngIf="bookshow" class="books">
+          <div class="add-btn-wrap">
+            <div>
+              <h3>{{selectedCategory.title}}</h3>
+              <small>{{selectedCategory.categoryName}}</small>
+            </div>
+            <div class="row col-2" style="align-items: center; justify-content: space-between;">
+              <div (click)="onShowNewCategory(selectedCategory, 0, false)" class="primary-btn">
+                <i class="fa fa-plus"></i>
+                Edit Book
+              </div>
+              <i (click)="onDeleteCategory(selectedCategory)" class="fa-solid fa-trash" style="color:red"></i>
+            </div>
+
+          </div>
+          <div class="col-12 row" style="align-items:center">
+            <div class="col-8 row">
+              <div class="bookList">
+                <mat-card class="booksCard col-sm-5">
+                  <div class="crd-body">
+                    <div class="title">
+                      <small>Author</small>
+                      <h6>{{selectedCategory.author}}</h6>
+                    </div>
+
+                  </div>
+                </mat-card>
+                <mat-card class="booksCard col-sm-5">
+                  <div class="crd-body">
+                    <div class="title">
+                      <small>Date Added</small>
+                      <h6>{{time | date: 'medium'}}</h6>
+                    </div>
+
+                  </div>
+                </mat-card>
+                <mat-card class="booksCard col-sm-5">
+                  <div class="crd-body">
+                    <div class="title">
+                      <small>Description</small>
+                      <h6>{{selectedCategory.description}}</h6>
+                    </div>
+
+                  </div>
+                </mat-card>
+                <mat-card class="booksCard col-sm-5">
+                  <div class="crd-body">
+                    <div class="title">
+                      <small>Favourite</small>
+                      <h6>{{selectedCategory.favourite ? 'Yes': 'No'}}</h6>
+                    </div>
+
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+            <div class="col-4" style="text-align: center; justify-content:center; align-items:center;">
+              <p *ngIf="selectedCategory.imageUrl ===''">Please update book details</p>
+              <i *ngIf="selectedCategory.imageUrl !==''" style="font-size:15rem" class="fa-solid fa-file-pdf" (click)="goToLink(selectedCategory!.imageUrl)"></i>
+            </div>
+          </div>
+
+
+          <!-- <div class="btn-wrap">
+            <div class="blue-btn">Load More</div>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="newCategory" class="modal-overlay">
+  <app-new-category [isNew]="isNew" [selectedCategory]="selectedCategory" (closeModal)="close_onClick($event)"
+    id="form-modal" class="form-modal center-center">
+  </app-new-category>
+</div>
+
+<div *ngIf="updateProfile" class="modal-overlay">
+  <app-update-profile (closeModal)="close_onClick($event)" id="form-modal" class="form-modal center-center">
+  </app-update-profile>
+</div>
+
+<!-- <div *ngIf="newBook" class="modal-overlay">
+  <app-new-book [selectedCategory]="selectedCategory" [isNew]="isNewBook" [selectedBook]="selectedBook"
+    (closeModal)="close_onClick($event)" id="form-modal" class="form-modal center-center">
+  </app-new-book>
+</div> -->
+<!-- TopBar Ends -->

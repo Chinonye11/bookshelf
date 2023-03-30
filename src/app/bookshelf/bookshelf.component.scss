@@ -1,0 +1,170 @@
+.category,
+.books {
+  color: #767676;
+  .emp {
+    display: grid;
+    text-align: center;
+    margin-top: 70%;
+    a {
+      font-size: 10px;
+    }
+    a:hover {
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
+}
+
+.title {
+  font-size: 3rem;
+}
+
+.category {
+  min-width: 350px;
+  padding: 20px;
+}
+
+.books {
+  padding: 20px;
+  width: 100%;
+}
+
+.mat-divider {
+  border-top-width: 2px;
+  min-height: 500px;
+  //   border-top-style: dashed;
+}
+.shelf_layout {
+  display: flex;
+}
+
+.fa-right-from-bracket {
+  color: #004983;
+}
+
+.cat-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #004983;
+  h6 {
+    font-size: 20px;
+  }
+  i:hover {
+    font-size: 20px;
+    color: #000000;
+  }
+}
+
+.categoryItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1.3px solid #e8e8e8;
+  padding: 15px 15px 15px 0px;
+  a,
+  i {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .action {
+    display: none;
+  }
+}
+
+.categoryItem:hover,
+.active {
+  background-color: rgba(0, 73, 131, 0.839215686274509);
+  border-top: 0px solid;
+  cursor: pointer;
+  box-shadow: 0 0px 5px 2px rgba(58, 58, 58, 0.09);
+  i,
+  a {
+    color: #ffffff;
+  }
+  .action {
+    display: grid;
+  }
+}
+
+.add-btn-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // width: 90%;
+  margin-bottom: 20px;
+}
+
+.favouriteColor {
+  color: yellow;
+}
+
+.bookList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  overflow: auto;
+  justify-content: space-evenly;
+}
+
+.booksCard {
+  border-left: 10px solid #004983;
+  border-radius: 0px 10px 10px 0px;
+  margin-bottom: 2rem;
+  .crd-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      color: #000000;
+      h6 {
+        font-weight: 700 !important;
+        font-size: 1rem;
+        margin-bottom: 0rem !important;
+      }
+      small {
+        font-size: .8rem;
+        font-weight: 600 !important;
+      }
+    }
+    .action {
+      display: grid;
+      text-align: center;
+      i {
+        margin: 5px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .shelf_layout {
+    display: block;
+    margin-top: 40px;
+  }
+
+  .divider {
+    display: none !important;
+  }
+
+  .emp {
+    margin-top: 0px !important;
+  }
+
+  .add-btn-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+.fa-solid {
+  cursor: pointer !important;
+}
